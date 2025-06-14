@@ -17,7 +17,12 @@ class AlbaMapperTest {
 
 	@Test
 	void testSelectAlbaList() {
-		fail("Not yet implemented");
+		mapper.selectAlbaList().forEach(alba->{
+			log.info("{}", alba);
+			alba.getLicAlbaList().forEach(lic->
+				log.info("lic : {}", lic)
+			);
+		});
 	}
 
 	@Test
