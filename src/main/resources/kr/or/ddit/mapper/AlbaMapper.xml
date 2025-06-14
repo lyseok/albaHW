@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.AlbaMapper">
+	
+	<resultMap id="albaResultMap" type="AlbaVO" autoMapping="true">
+    <id property="alId" column="AL_ID"/>
+
+    <collection property="licenseList" javaType="list" ofType="LicAlbaVO">
+        <id property="alId" column="AL_ID"/>
+        <result property="licCode" column="LIC_CODE"/>
+        <result property="licDate" column="LIC_DATE"/>
+        <result property="licImg" column="LIC_IMG"/>
+        
+        <association property="license" javaType="LicenseVO">
+            <result property="licCode" column="LIC_CODE"/>
+            <result property="licName" column="LIC_NAME"/>
+        </association>
+    </collection>
+</resultMap>
+
+	<select id="selectAlbaList" resultMap="albaResultMap">
+		SELECT
+			AL_ID
+			 , AL_NAME
+			 , AL_ZIP
+			 , AL_AGE
+			 , AL_ADD1
+			 , AL_ADD2
+			 , AL_HP
+			 , AL_GEN
+			 , AL_MAIL
+			 , AL_CAREER
+			 , AL_SPEC
+			 , AL_DESC
+			 , AL_IMG
+			 , GR_CODE
+		FROM ALBA
+	</select>
+
+	<select id="selectAlba" resultMap="albaResultMap">
+		SELECT 
+		    A.AL_ID,
+		    A.AL_NAME,
+		    A.AL_AGE,
+		    A.AL_ZIP,
+		    A.AL_ADD1,
+		    A.AL_ADD2,
+		    A.AL_HP,
+		    A.AL_GEN,
+		    A.AL_MAIL,
+		    A.AL_CAREER,
+		    A.AL_SPEC,
+		    A.AL_DESC,
+		    A.AL_IMG,
+		    G.GR_NAME,
+		    L.LIC_NAME,
+		    LA.LIC_DATE
+		FROM ALBA A
+		JOIN GRADE G ON A.GR_CODE = G.GR_CODE
+		LEFT JOIN LIC_ALBA LA ON A.AL_ID = LA.AL_ID
+		LEFT JOIN LICENSE L ON LA.LIC_CODE = L.LIC_CODE
+		WHERE A.AL_ID = #{alId}
+	</select>
+	
+	<select id="selectAlbaListBySearch" resultMap="albaResultMap">
+		SELECT
+            AL_ID
+            , AL_NAME
+            , AL_AGE
+            , AL_ZIP
+            , AL_ADD1
+            , AL_ADD2
+            , AL_HP
+            , AL_GEN
+            , AL_MAIL
+            , AL_CAREER
+            , AL_SPEC
+            , AL_DESC
+            , AL_IMG
+            , GR_CODE
+        FROM ALBA
+        <where>
+            <if test="grCode != null and grCode != ''">
+                AND GR_CODE = #{grCode}
+            </if>
+
+            <if test="alGen != null and alGen != ''">
+                AND AL_GEN = #{alGen}
+            </if>
+
+            <if test="alCareer != null and alCareer != ''">
+                AND AL_CAREER &gt;= #{alCareer} </if>
+
+            <if test="alName != null and alName != ''">
+                AND AL_NAME LIKE '%' || #{alName} || '%'
+            </if>
+
+            <if test="alDesc != null and alDesc != ''">
+                AND AL_DESC LIKE '%' || #{alDesc} || '%'
+            </if>
+
+            </where>
+        ORDER BY AL_ID ASC
+	</select>
+	
+	<select id="selectGradeList" resultType="GradeVO">
+		SELECT 
+			GR_CODE
+			, GR_NAME
+		FROM GRADE
+	</select>
+	
+	<select id="selectLicenseList">
+		SELECT 
+			LIC_CODE
+			, LIC_NAME
+		FROM LICENSE
+	</select>
+	
+	<insert id="insertAlba">
+		INSERT INTO ALBA(
+			AL_ID
+            , AL_NAME
+            , AL_AGE
+            , AL_ZIP
+            , AL_ADD1
+            , AL_ADD2
+            , AL_HP
+            , AL_GEN
+            , AL_MAIL
+            , AL_CAREER
+            , AL_SPEC
+            , AL_DESC
+            , AL_IMG
+            , GR_CODE
+		)VALUES(
+		#{alId}
+		, #{alName}
+		, #{alAge}
+		, #{alZip}
+		, #{alAdd1}
+		, #{alAdd2}
+		, #{alHp}
+		, #{alGen}
+		, #{alMail}
+		, #{alCareer}
+		, #{alSpec}
+		, #{alDesc}
+		, #{alImg}
+		, #{grCode}
+		)
+		
+	</insert>
+	
+	<update id="updateAlba">
+		UPDATE ALBA
+		SET 
+            AL_NAME =  #{alName}
+            , AL_AGE = #{alAge}
+            , AL_ZIP = #{alZip}
+            , AL_ADD1 = #{alAdd1}
+            , AL_ADD2 = #{alAdd2}
+            , AL_HP = #{alHp}
+            , AL_GEN = #{alGen}
+            , AL_MAIL = #{alMail}
+            , AL_CAREER = #{alCareer}
+            , AL_SPEC = #{alSpec}
+            , AL_DESC = #{alDesc}
+            , AL_IMG = #{alImg}
+            , GR_CODE = #{grCode}
+        WHERE AL_ID = #{alId}
+	</update>
+	
+	<delete id="deleteLicAlba">
+		DELETE FROM LIC_ALBA
+		WHERE AL_ID = #{alId}
+	</delete>
+	
+	<delete id="deleteAlba">
+		delete from ALBA
+		WHERE AL_ID = #{alId}
+	</delete>
+</mapper>
