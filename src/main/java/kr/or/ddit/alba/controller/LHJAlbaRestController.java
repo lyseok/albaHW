@@ -24,6 +24,7 @@ import kr.or.ddit.vo.LicenseVO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")  //security 안 쓰고, 필터 지정 없을 시 어노테이션 통해 등록 필수.
 @RequestMapping({"/rest/alba", "/ajax/alba"})
 @RequiredArgsConstructor
 public class LHJAlbaRestController {

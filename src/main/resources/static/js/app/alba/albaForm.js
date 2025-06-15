@@ -23,8 +23,8 @@ function FetchRestApi(baseUrl){
             throw new Error(resp.statusText);
         }
     }
-    this.getOne = async (id)=>{  //경로변수 넘어감, 하드코딩 불가
-        let resp = await fetch(`${baseUrl}/${id}`, options);
+    this.getOne = async (alba)=>{  //경로변수 넘어감, 하드코딩 불가
+        let resp = await fetch(`${baseUrl}/${alba}`, options);
         if(resp.ok){
             return await resp.json();
         }else{
@@ -46,8 +46,8 @@ function FetchRestApi(baseUrl){
             throw new Error(resp.statusText);
         }
     }
-    this.update = async (id, data)=>{
-        let resp = await fetch(`${baseUrl}/${id}`, {
+    this.update = async (alba, data)=>{
+        let resp = await fetch(`${baseUrl}/${alba}`, {
             method:"PUT",
             headers:{
                 ...headers,  //위의 headers 복사하고 싶어서 스프레드 연산자로
@@ -61,8 +61,8 @@ function FetchRestApi(baseUrl){
             throw new Error(resp.statusText);
         }
     }
-    this.remove = async (id)=>{  //body가 없으니 data도 불필요
-        let resp = await fetch(`${baseUrl}/${id}`, {
+    this.remove = async (alba)=>{  //body가 없으니 data도 불필요
+        let resp = await fetch(`${baseUrl}/${alba}`, {
             method:"DELETE",
             ...options  //기존 headers를 그대로 가지고 있는 options를 스프레드 연산자로
         });
