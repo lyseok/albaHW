@@ -3,6 +3,7 @@ package kr.or.ddit.alba.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +25,6 @@ public class AlbaServiceImpl implements AlbaService{
 	private File imagesFolder;
 	
 
-
 	@Override
 	public void createAlba(AlbaVO alba) {
 		//albaImgae(alba);
@@ -37,10 +37,11 @@ public class AlbaServiceImpl implements AlbaService{
 	}
 	
 	@Override
-	public List<AlbaVO> readSearchAlbaList(AlbaVO alba) {
-		return mapper.selectAlbaListBySearch(alba);
+	public List<AlbaVO> readAlbaListBySearch(Map<String, Object> params) {
+		return mapper.selectAlbaListBySearch(params);
 	}
-
+	
+	
 	@Override
 	public AlbaVO readAlba(String id) {
 		return mapper.selectAlba(id);
@@ -83,6 +84,11 @@ public class AlbaServiceImpl implements AlbaService{
 		}
 	}
 
+
+
+
+
+	
 	
 //	
 //	private void licenseImage(LicAlbaVO licAlba) {
