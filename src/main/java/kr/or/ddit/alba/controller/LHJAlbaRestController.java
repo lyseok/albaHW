@@ -23,9 +23,9 @@ import kr.or.ddit.vo.AlbaVO;
 import kr.or.ddit.vo.LicenseVO;
 import lombok.RequiredArgsConstructor;
 
-@RestController
+//@RestController
 @CrossOrigin(origins = "http://localhost:5173")  //security 안 쓰고, 필터 지정 없을 시 어노테이션 통해 등록 필수.
-@RequestMapping({"/rest/alba", "/ajax/alba"})
+//@RequestMapping({"/rest/alba", "/ajax/alba"})
 @RequiredArgsConstructor
 public class LHJAlbaRestController {
 	private final AlbaService service;
@@ -66,7 +66,7 @@ public class LHJAlbaRestController {
    }
    
    @GetMapping("/{albaId}/licenseImage")
-   public List<LicenseVO> getAlbalicense() {
+   public List<LicenseVO> getAlbalicense(@PathVariable String albaId) {
       return service.readLicenseList();
    }
 
