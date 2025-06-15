@@ -22,7 +22,7 @@ import kr.or.ddit.vo.LicenseVO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173") // React 개발 서버 주소
+@CrossOrigin(origins = "http://localhost:5173") // React 개발 서버 주소 
 @RequestMapping("/rest/alba")
 @RequiredArgsConstructor
 public class LYS97RestController {
