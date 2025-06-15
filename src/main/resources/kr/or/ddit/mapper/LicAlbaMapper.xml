@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.LicAlbaMapper">
+	<select id="getLicAlbaList">
+		SELECT 
+		    LA.AL_ID
+		    , LA.LIC_CODE
+		    , LA.LIC_DATE
+		    , LA.LIC_IMG
+		    , L.LIC_NAME
+		FROM LIC_ALBA LA
+		JOIN LICENSE L ON LA.LIC_CODE = L.LIC_CODE
+		WHERE AL_ID = #{alId}
+	</select>
+	
+	<select id="getLicAlba">
+		SELECT 
+		    LA.AL_ID
+		    , LA.LIC_CODE
+		    , LA.LIC_DATE
+		    , LA.LIC_IMG
+		    , L.LIC_NAME
+		FROM LIC_ALBA LA
+		JOIN LICENSE L ON LA.LIC_CODE = L.LIC_CODE
+		WHERE LA.AL_ID = #{alId}
+		AND LA.LIC_CODE = #{licCode}  
+	</select>
+	
+	<insert id="insertLicAlba">
+		INSERT INTO 
+		LIC_ALBA (
+		    AL_ID
+		    , LIC_CODE
+		    , LIC_DATE
+		    , LIC_IMG
+		) VALUES (
+		    #{alId}
+		    , #{licCode}
+		    , #{licDate}
+		    , #{licimg}
+		)
+	</insert>
+		
+	<update id="updateLicAlba">
+		UPDATE LIC_ALBA SET
+		     AL_ID = #{alId}
+		    , LIC_DATE = #{licDate}
+		    , LIC_IMG = #{licimg}
+		WHERE AL_ID = #{alId}
+		AND LIC_CODE = #{licCode}  
+	</update>
+	
+	<delete id="deleteLicAlba">
+		DELETE FROM LIC_ALBA
+		WHERE AL_ID = #{alId}
+		AND LIC_CODE = #{licCode}  
+	</delete>
+</mapper>

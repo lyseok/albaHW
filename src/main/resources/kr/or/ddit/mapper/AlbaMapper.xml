@@ -78,7 +78,7 @@
 		WHERE A.AL_ID = #{alId}
 	</select>
 	
-	<select id="selectAlbaListBySearch" resultMap="albaResultMap">
+	<select id="selectAlbaListBySearch" parameterType="map" resultMap="albaResultMap">
 		SELECT 
 		    A.AL_ID,
 		    A.AL_NAME,
@@ -103,39 +103,28 @@
 		JOIN GRADE G ON A.GR_CODE = G.GR_CODE
 		LEFT JOIN LIC_ALBA LA ON A.AL_ID = LA.AL_ID
 		LEFT JOIN LICENSE L ON LA.LIC_CODE = L.LIC_CODE
-        <where>
-        	<!--  학력 -->
-            <if test="grCode != null and grCode != ''">
-                AND A.GR_CODE = #{grCode}
-            </if>
-
-        	<!--  자격증 -->
-            <if test="alGen != null and alGen != ''">
-                AND A.AL_GEN LIKE '%' || #{alGen} || '%'
-            </if>
-
-        	<!--  성별 -->
-            <if test="alGen != null and alGen != ''">
-                AND A.AL_GEN = #{alGen}
-            </if>
-
-        	<!--  지역 -->
-            <if test="alAddr1 != null and alAddr1 != ''">
-                AND A.AL_ADDR1 LIKE '%' || #{alAddr1} || '%'
-            </if>
-            
-        	<!--  경력사항 -->
-            <if test="alCareer != null and alCareer != ''">
-                AND A.AL_CAREER LIKE '%' || #{alCareer} || '%'
-            </if>
-
-        	<!-- 이름 -->
-            <if test="alName != null and alName != ''">
-                AND A.AL_NAME LIKE '%' || #{alName} || '%'
-            </if>
-        </where>
-        ORDER BY A.AL_ID ASC
+	    <where>
+	        <if test="grCode != null and grCode != ''">
+	            AND A.GR_CODE = #{grCode}
+	        </if> 
+	        <if test="licCode != null and licCode != ''">
+	            AND L.LIC_CODE = #{licCode}
+	        </if>
+	        <if test="alGen != null and alGen != ''">
+	            AND A.AL_GEN = #{alGen}
+	        </if>
+	        <if test="alAdd1 != null and alAdd1 != ''">
+	            AND A.AL_ADD1 LIKE '%' || #{alAdd1} || '%'
+	        </if>
+	        <if test="alCareer != null and alCareer != ''">
+	            AND A.AL_CAREER LIKE '%' || #{alCareer} || '%'
+	        </if>
+	        <if test="alName != null and alName != ''">
+	            AND A.AL_NAME LIKE '%' || #{alName} || '%'
+	        </if> 
+	    </where>
 	</select>
+
 	
 	<select id="selectGradeList" resultType="GradeVO">
 		SELECT 

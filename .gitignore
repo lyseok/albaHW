@@ -30,4 +30,10 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
+<<<<<<< HEAD
 .vscode/
+=======
+.vscode/
+
+.matadata/
+>>>>>>> 5e82552a418106d92738d05b2b015f27ab589802

@@ -1,6 +1,9 @@
 package kr.or.ddit.vo;
 
 import java.io.Serializable;
+import java.util.Base64;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -19,4 +22,11 @@ public class LicAlbaVO implements Serializable{
 	private byte[] licImg;
 	
 	private LicenseVO license;
+	
+	private MultipartFile licImage;
+	
+	public String getLicImgBase64() {
+		if(licImg == null) return null;
+		return Base64.getEncoder().encodeToString(licImg);
+	}
 }
