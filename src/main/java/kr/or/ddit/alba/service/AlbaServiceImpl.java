@@ -80,6 +80,9 @@ public class AlbaServiceImpl implements AlbaService{
 		}
 	}
 
+
+
+	
 	
 //	
 //	private void licenseImage(LicAlbaVO licAlba) {
