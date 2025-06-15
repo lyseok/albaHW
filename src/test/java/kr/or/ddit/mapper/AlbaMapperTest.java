@@ -2,10 +2,13 @@ package kr.or.ddit.mapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import kr.or.ddit.vo.AlbaVO;
 import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
@@ -22,12 +25,23 @@ class AlbaMapperTest {
 			alba.getLicAlbaList().forEach(lic->
 				log.info("lic : {}", lic)
 			);
+			log.info("{}", alba.getGrade().getGrCode());
+			log.info("{}", alba.getGrade().getGrName());
 		});
 	}
 
 	@Test
 	void testSelectAlbaListBySearch() {
-		fail("Not yet implemented");
+		Map<String, Object> params = 
+				Map.of("grCode", "G003"
+						, "licCode"	, "L002"
+						, "alGen" , "M"
+						, "alAdd1", "1te"
+						, "alCareer", ""
+				);
+		mapper.selectAlbaListBySearch(params).forEach(al ->
+			log.info("{}", al)
+		);
 	}
 
 	@Test
