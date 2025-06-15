@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.ddit.mapper.AlbaMapper;
+import kr.or.ddit.vo.AlbaVO;
+import kr.or.ddit.vo.LicenseVO;
 import lombok.RequiredArgsConstructor;
 
 @Service
