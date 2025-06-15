@@ -8,8 +8,13 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<c:url value='/resources/js/albaList.js'/>"></script>
 </head>
 <body>
+<script>
+    const CPATH = '${pageContext.request.contextPath}';
+ </script>
+
 <main class="container">
 <a href="/alba/albaList.do">
 <h4>알바 목록 조회</h4>
@@ -50,7 +55,7 @@
 			<c:when test="${not empty albaList }">
 				<c:forEach items="${albaList }" var="alba">
 					<c:url value="/alba/albaView.do" var="detailURL">
-						<c:param name="who" value="${alba.alId }"/>
+						<c:param name="alId" value="${alba.alId }"/>
 					</c:url>
 					<tr>
 						<td>${alba.alImg }</td>
@@ -82,5 +87,6 @@
 	</tbody>
 </table>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>

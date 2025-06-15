@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.ddit.alba.service.AlbaService;
 import kr.or.ddit.licalba.service.LicAlbaService;
@@ -23,9 +24,9 @@ public class AlbaViewController {
 	
 	
 	@GetMapping
-	public String albaView(Model model) {
+	public String albaView(@RequestParam(name = "alId") String who, Model model) {
 		
-		String albaId = "A0000001";
+		String albaId = who;
 		AlbaVO alba = albaService.readAlba(albaId);
 		List<LicAlbaVO> licList = alcService.readLicAlbaList(albaId);
 		model.addAttribute("alba", alba);

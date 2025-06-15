@@ -16,8 +16,9 @@ public class AlbaDeleteController {
 	private final AlbaService albaService;
 	
 	@GetMapping
-	public String deleteAlba(@RequestParam String who) {
-
+	public String deleteAlba(@RequestParam(name = "alId") String who) {
+		albaService.removeLicAlba(who);
+		albaService.removeAlba(who);
 		
 		return "redirect:/alba/albaList.do";
 	}
