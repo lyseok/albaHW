@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.mapper.AlbaMapper;
 import kr.or.ddit.vo.AlbaVO;
+import kr.or.ddit.vo.GradeVO;
 import kr.or.ddit.vo.LicenseVO;
 import lombok.RequiredArgsConstructor;
 
@@ -73,5 +74,15 @@ public class AlbaServiceImpl implements AlbaService{
 				throw new RuntimeException(e);
 			}
 		}
+	}
+
+	@Override
+	public void removeLicAlba(String id) {
+		mapper.deleteLicAlba(id);
+	}
+
+	@Override
+	public List<GradeVO> readGradeList() {
+		return mapper.selectGradeList();
 	}
 }
