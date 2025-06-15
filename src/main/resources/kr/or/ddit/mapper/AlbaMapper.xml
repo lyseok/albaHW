@@ -4,8 +4,14 @@
 	
 	<resultMap id="albaResultMap" type="AlbaVO" autoMapping="true">
     <id property="alId" column="AL_ID"/>
-
+	
+	<association property="grade" javaType="GradeVO">
+		<result property="grCode" column="GR_CODE"/>
+		<result property="grName" column="GR_NAME"/>
+	</association>
+	
     <collection property="licAlbaList" javaType="list" ofType="LicAlbaVO">
+        <result property="alId" column="AL_ID"/>
         <result property="licCode" column="LIC_CODE"/>
         <result property="licDate" column="LIC_DATE"/>
         <result property="licImg" column="LIC_IMG"/>
@@ -32,8 +38,11 @@
 		    A.AL_SPEC,
 		    A.AL_DESC,
 		    A.AL_IMG,
+		    G.GR_CODE,
 		    G.GR_NAME,
-		    L.LIC_NAME,
+		    L.LIC_CODE,
+		    L.LIC_NAME,	    
+		    LA.LIC_IMG,		    
 		    LA.LIC_DATE
 		FROM ALBA A
 		JOIN GRADE G ON A.GR_CODE = G.GR_CODE
@@ -56,8 +65,11 @@
 		    A.AL_SPEC,
 		    A.AL_DESC,
 		    A.AL_IMG,
+		    G.GR_CODE,
 		    G.GR_NAME,
-		    L.LIC_NAME,
+		    L.LIC_CODE,
+		    L.LIC_NAME,	    
+		    LA.LIC_IMG,		    
 		    LA.LIC_DATE
 		FROM ALBA A
 		JOIN GRADE G ON A.GR_CODE = G.GR_CODE
@@ -67,44 +79,62 @@
 	</select>
 	
 	<select id="selectAlbaListBySearch" resultMap="albaResultMap">
-		SELECT
-            AL_ID
-            , AL_NAME
-            , AL_AGE
-            , AL_ZIP
-            , AL_ADD1
-            , AL_ADD2
-            , AL_HP
-            , AL_GEN
-            , AL_MAIL
-            , AL_CAREER
-            , AL_SPEC
-            , AL_DESC
-            , AL_IMG
-            , GR_CODE
-        FROM ALBA
+		SELECT 
+		    A.AL_ID,
+		    A.AL_NAME,
+		    A.AL_AGE,
+		    A.AL_ZIP,
+		    A.AL_ADD1,
+		    A.AL_ADD2,
+		    A.AL_HP,
+		    A.AL_GEN,
+		    A.AL_MAIL,
+		    A.AL_CAREER,
+		    A.AL_SPEC,
+		    A.AL_DESC,
+		    A.AL_IMG,
+		    G.GR_CODE,
+		    G.GR_NAME,
+		    L.LIC_CODE,
+		    L.LIC_NAME,	    
+		    LA.LIC_IMG,		    
+		    LA.LIC_DATE
+		FROM ALBA A
+		JOIN GRADE G ON A.GR_CODE = G.GR_CODE
+		LEFT JOIN LIC_ALBA LA ON A.AL_ID = LA.AL_ID
+		LEFT JOIN LICENSE L ON LA.LIC_CODE = L.LIC_CODE
         <where>
+        	<!--  학력 -->
             <if test="grCode != null and grCode != ''">
-                AND GR_CODE = #{grCode}
+                AND A.GR_CODE = #{grCode}
             </if>
 
+        	<!--  자격증 -->
             <if test="alGen != null and alGen != ''">
-                AND AL_GEN = #{alGen}
+                AND A.AL_GEN LIKE '%' || #{alGen} || '%'
             </if>
 
+        	<!--  성별 -->
+            <if test="alGen != null and alGen != ''">
+                AND A.AL_GEN = #{alGen}
+            </if>
+
+        	<!--  지역 -->
+            <if test="alAddr1 != null and alAddr1 != ''">
+                AND A.AL_ADDR1 LIKE '%' || #{alAddr1} || '%'
+            </if>
+            
+        	<!--  경력사항 -->
             <if test="alCareer != null and alCareer != ''">
-                AND AL_CAREER &gt;= #{alCareer} </if>
+                AND A.AL_CAREER LIKE '%' || #{alCareer} || '%'
+            </if>
 
+        	<!-- 이름 -->
             <if test="alName != null and alName != ''">
-                AND AL_NAME LIKE '%' || #{alName} || '%'
+                AND A.AL_NAME LIKE '%' || #{alName} || '%'
             </if>
-
-            <if test="alDesc != null and alDesc != ''">
-                AND AL_DESC LIKE '%' || #{alDesc} || '%'
-            </if>
-
-            </where>
-        ORDER BY AL_ID ASC
+        </where>
+        ORDER BY A.AL_ID ASC
 	</select>
 	
 	<select id="selectGradeList" resultType="GradeVO">
@@ -138,20 +168,20 @@
             , AL_IMG
             , GR_CODE
 		)VALUES(
-		#{alId}
-		, #{alName}
-		, #{alAge}
-		, #{alZip}
-		, #{alAdd1}
-		, #{alAdd2}
-		, #{alHp}
-		, #{alGen}
-		, #{alMail}
-		, #{alCareer}
-		, #{alSpec}
-		, #{alDesc}
-		, #{alImg}
-		, #{grCode}
+			#{alId}
+			, #{alName}
+			, #{alAge}
+			, #{alZip}
+			, #{alAdd1}
+			, #{alAdd2}
+			, #{alHp}
+			, #{alGen}
+			, #{alMail}
+			, #{alCareer}
+			, #{alSpec}
+			, #{alDesc}
+			, #{alImg}
+			, #{grCode}
 		)
 		
 	</insert>

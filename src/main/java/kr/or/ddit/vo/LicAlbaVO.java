@@ -16,7 +16,7 @@ public class LicAlbaVO implements Serializable{
 	private String licCode;
 	@NotBlank
 	private String licDate;
-	private String licImg;
+	private byte[] licImg;
 	
 	private LicenseVO license;
 }
