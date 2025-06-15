@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import kr.or.ddit.vo.AlbaVO;
 import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
@@ -22,12 +23,15 @@ class AlbaMapperTest {
 			alba.getLicAlbaList().forEach(lic->
 				log.info("lic : {}", lic)
 			);
+			log.info("{}", alba.getGrade().getGrCode());
+			log.info("{}", alba.getGrade().getGrName());
 		});
 	}
 
 	@Test
 	void testSelectAlbaListBySearch() {
-		fail("Not yet implemented");
+		AlbaVO alba = new AlbaVO();
+//		alba.set
 	}
 
 	@Test
