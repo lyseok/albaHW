@@ -1,6 +1,7 @@
 package kr.or.ddit.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +13,7 @@ import kr.or.ddit.vo.LicenseVO;
 public interface AlbaMapper {
 	
 	public List<AlbaVO> selectAlbaList();
-	public List<AlbaVO> selectAlbaListBySearch(AlbaVO alba);
+	public List<AlbaVO> selectAlbaListBySearch(Map<String, Object> params);
 	public AlbaVO selectAlba(String alId);
 	public int insertAlba(AlbaVO alba);
 	public int updateAlba(AlbaVO alba);

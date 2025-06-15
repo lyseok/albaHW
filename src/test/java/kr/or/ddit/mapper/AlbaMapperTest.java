@@ -2,6 +2,8 @@ package kr.or.ddit.mapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,8 +32,16 @@ class AlbaMapperTest {
 
 	@Test
 	void testSelectAlbaListBySearch() {
-		AlbaVO alba = new AlbaVO();
-//		alba.set
+		Map<String, Object> params = 
+				Map.of("grCode", "G003"
+						, "licCode"	, "L002"
+						, "alGen" , "M"
+						, "alAdd1", "1te"
+						, "alCareer", ""
+				);
+		mapper.selectAlbaListBySearch(params).forEach(al ->
+			log.info("{}", al)
+		);
 	}
 
 	@Test
