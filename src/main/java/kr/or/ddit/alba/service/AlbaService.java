@@ -3,6 +3,9 @@ package kr.or.ddit.alba.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ddit.vo.AlbaVO;
+import kr.or.ddit.vo.LicenseVO;
+
 public interface AlbaService {
 	public void createAlba(AlbaVO alba);
 	public List<AlbaVO> readAlbaList();
