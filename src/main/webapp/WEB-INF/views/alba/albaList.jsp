@@ -19,6 +19,8 @@
 <a href="/alba/albaList.do">
 <h4>알바 목록 조회</h4>
 </a>
+ <a href="/alba/albaInsert.do"><button>알바등록</button></a>
+
     <div class="row mb-3">
         <div class="col-md-6">
             <form action="/alba/searchAlba.do" method="get" class="d-flex">

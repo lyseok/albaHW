@@ -133,9 +133,12 @@
 					</tbody>
 				</table>
 			</td>
-		</tr>
-			<a href="/alba/albaUpdate.do">수정</a>
-		
+		</tr>		
 </table>
+<c:url value="/alba/albaUpdate.do" var="updateURL">
+					<c:param name="what" value="${alba.alId }" />
+				</c:url>
+				<a class="btn btn-primary" href="${updateURL }">수정</a>
+			
 </body>
 </html>
