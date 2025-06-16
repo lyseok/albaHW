@@ -11,6 +11,14 @@
 </head>
 <body>
 <table>
+	<tr>
+		<td colspan="2">
+			<c:url value="/alba/albaDelete.do" var="deleteURL">
+					<c:param name="alId" value="${alba.alId }"/>
+			</c:url>
+			 <a class="btn btn-primary" href="${deleteURL }">삭제하기</a>
+		</td>
+	</tr>
 	
 	<tr>
 		<th>프로필.</th>
@@ -30,7 +38,7 @@
 	</tr>
 	<tr>
 		<th>우편  </th>
-		<t>${alba.alZip }</td>
+		<td>${alba.alZip }</td>
 	</tr>
 	<tr>
 		<th>주소  </th>
@@ -114,7 +122,6 @@
 										</div>
 										</td>
 									</tr>
-									
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
