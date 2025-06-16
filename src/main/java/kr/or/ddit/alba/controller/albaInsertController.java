@@ -13,7 +13,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.or.ddit.alba.service.AlbaServiceImpl;
 import kr.or.ddit.validate.InsertGroup;
 import kr.or.ddit.vo.AlbaVO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping
 public class albaInsertController {
@@ -33,8 +35,8 @@ public class albaInsertController {
 @Validated(InsertGroup.class) @ModelAttribute(MODELNAME)AlbaVO alba
 , BindingResult errors
 , RedirectAttributes redirectAttributes
-			){
-	
+			){ 
+		log.info("alba : {}",alba);
 		return "redirect:/";
 	}
 	
