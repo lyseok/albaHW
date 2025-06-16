@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<h1>회원 수정</h1>
 <body>
+<h1>Index Page</h1>
 
 </body>
 </html>

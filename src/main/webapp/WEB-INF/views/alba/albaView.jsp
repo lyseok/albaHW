@@ -134,6 +134,7 @@
 				</table>
 			</td>
 		</tr>
+			<a href="/alba/albaUpdate.do">수정</a>
 		
 </table>
 </body>
