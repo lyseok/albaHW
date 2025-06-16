@@ -19,6 +19,15 @@
 			 <a class="btn btn-primary" href="${deleteURL }">삭제하기</a>
 		</td>
 	</tr>
+	<!-- 목록가기 추가 -->
+	<tr>
+		<td colspan="2">
+			<c:url value="/alba/albaList.do" var="backListURL"/>
+			 <a class="btn btn-primary" href="${backListURL }">목록으로 돌아가기</a>
+		</td>
+	</tr>
+		
+	
 	
 	<tr>
 		<th>프로필.</th>
@@ -41,41 +50,41 @@
 		<td>${alba.alZip }</td>
 	</tr>
 	<tr>
-		<th>주소  </th>
+		<th>주소</th>
 		<td>${alba.alAdd1 }</td>
 	</tr>
 	<tr>
-		<th>상세주소.</th>
+		<th>상세주소</th>
 		<td>${alba.alAdd2 }</td>
 	</tr>
 	<tr>
-		<th>핸드폰 번호.</th>
+		<th>핸드폰 번호</th>
 		<td>${alba.alHp }</td>
 	</tr>
 	<tr>
-		<th>성별.</th>
+		<th>성별</th>
 		<td>${alba.alGen }</td>
 	</tr>
 	<tr>
-		<th>이메일. </th>
+		<th>이메일</th>
 		<td>${alba.alMail }</td>
 	</tr>
 	<tr>
-		<th>경력.</th>
+		<th>경력사항</th>
 		<td>${alba.alCareer }</td>
 	</tr>
 	<tr>
-		<th>스펙.</th>
+		<th>특기사항</th>
 		<td>${alba.alSpec }</td>
 	</tr>
 	<tr>
-		<th>이름 </th>
+		<th>비고</th>
 		<td>${alba.alDesc }</td>
 	</tr>
 	
 	<tr>
-		<th>학력. </th>
-		<td>${alba.grCode }</td>
+		<th>학력</th>
+		<td>${alba.grade.grName }</td>
 	</tr>
 	
 	<tr>
@@ -126,7 +135,7 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td colspan="3">자격증 없음.</td>
+									<td colspan="3">자격증 없음...</td>
 								</tr>
 							</c:otherwise>
 						</c:choose>
