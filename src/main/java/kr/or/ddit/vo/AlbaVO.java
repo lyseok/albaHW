@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import kr.or.ddit.validate.UpdateGroup;
 import kr.or.ddit.validate.constraints.MimeTypeCheck;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class AlbaVO implements Serializable{
 	private String alId;
 	@NotBlank
 	private String alName;
-	@NotBlank
+	@NotNull
 	private Integer alAge;
 	@NotBlank
 	private String alZip;
