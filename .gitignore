@@ -1,3 +1,4 @@
+# Java/Maven
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -30,10 +31,29 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-<<<<<<< HEAD
 .vscode/
-=======
-.vscode/
+.vscode/*
+!.vscode/extensions.json
 
+### 기타 개발툴
 .matadata/
->>>>>>> 5e82552a418106d92738d05b2b015f27ab589802
+
+# Node / Frontend
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
