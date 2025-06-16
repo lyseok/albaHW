@@ -18,14 +18,15 @@
 			</c:url>
 			 <a class="btn btn-primary" href="${deleteURL }">삭제하기</a>
 		</td>
-		
-		<td colspan="2">
-			<c:url value="/albaList.do" var="backListURL"/>
-			 <a class="btn btn-primary" href="${backListURL }">목록</a>
-		</td>
-		
-		
 	</tr>
+	<tr>
+		<td colspan="2">
+			<c:url value="/alba/albaList.do" var="backListURL"/>
+			 <a class="btn btn-primary" href="${backListURL }">목록으로 돌아가기</a>
+		</td>
+	</tr>
+		
+	
 	
 	<tr>
 		<th>프로필.</th>
@@ -82,7 +83,7 @@
 	
 	<tr>
 		<th>학력</th>
-		<td>${alba.grade.grCode }</td>
+		<td>${alba.grade.grName }</td>
 	</tr>
 	
 	<tr>
