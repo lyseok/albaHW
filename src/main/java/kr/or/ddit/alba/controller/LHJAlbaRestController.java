@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController  //@ResponseBody는 얘랑 중복됨
 @CrossOrigin(origins = "http://localhost:5173") // security 안 쓰고, 필터 지정 없을 시 어노테이션 통해 등록 필수.
-@RequestMapping("/rest/alba")
+@RequestMapping("/rest/licAlba")
 @RequiredArgsConstructor
 public class LHJAlbaRestController {
 	private final AlbaService albaService;
