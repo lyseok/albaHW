@@ -19,6 +19,7 @@
 			 <a class="btn btn-primary" href="${deleteURL }">삭제하기</a>
 		</td>
 	</tr>
+	<!-- 목록가기 추가 -->
 	<tr>
 		<td colspan="2">
 			<c:url value="/alba/albaList.do" var="backListURL"/>
