@@ -52,7 +52,16 @@ class AlbaMapperTest {
 
 	@Test
 	void testInsertAlba() {
-		fail("Not yet implemented");
+		AlbaVO alba = new AlbaVO();
+		alba.setAlName("미뮨석");
+		alba.setAlAge(22);
+		alba.setAlZip("testzip");
+		alba.setAlAdd1("서울 특별시");
+		alba.setAlAdd2("강남구");
+		alba.setAlHp("010-0000-2222");
+		alba.setAlGen("F");
+		alba.setAlMail("mimyoonsuck@gmail.com");
+		assertEquals(1, mapper.insertAlba(alba));
 	}
 
 	@Test

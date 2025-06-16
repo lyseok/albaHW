@@ -141,6 +141,18 @@
 	</select>
 	
 	<insert id="insertAlba">
+	<selectKey order="BEFORE" resultType="string" keyProperty="alId">
+		SELECT
+            'A' || LPAD(
+                NVL(
+                    SUBSTR(MAX(AL_ID), 2),
+                    0
+                ) + 1,
+                7,
+                '0'
+            )
+        FROM ALBA
+	</selectKey>
 		INSERT INTO ALBA(
 			AL_ID
             , AL_NAME
